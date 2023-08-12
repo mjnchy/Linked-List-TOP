@@ -37,6 +37,10 @@ function linkedList () {
       return node.head;
     },
 
+    insertAt (value, index) {
+
+    },
+
     prepend (value) {
       let node = this.node(value);
 
@@ -73,7 +77,7 @@ function linkedList () {
     },
 
     at (index = 0) {
-      if (index < 0 || typeof index !== 'number') return "Param can only be a positive integer";
+      if (index < 0 || typeof index !== 'number') return "param can only be a positive integer";
       let wanted = this.head();
 
       if (index > 0) {
@@ -84,7 +88,7 @@ function linkedList () {
           count++;
 
           if (count == index) break;
-          if (!wanted.nextNode) return "Index does not exist in list"
+          if (!wanted.nextNode) return "index does not exist in list"
         };
       };
 
@@ -93,7 +97,7 @@ function linkedList () {
 
     pop () {
       let wanted = this.head();
-      if (!head.nextNode) return "Empty list, nothing to remove";
+      if (!head.nextNode) return "empty list, nothing to remove";
       let prevNode;
 
       while (wanted.nextNode) {
@@ -110,8 +114,10 @@ function linkedList () {
       return wanted;
     },
 
+    removeAt (index) {},
+
     contains (value) {
-      if (value == undefined) return "Parameter cannot be undefined";
+      if (value == undefined) return "parameter cannot be undefined";
 
       let wanted = this.head();
       let has = false;
@@ -127,7 +133,41 @@ function linkedList () {
       };
 
       return has;
-    }
+    },
+
+    find (value) {
+      if (value == undefined) return "find requires an arguement";
+      let currentNode = this.head();
+      
+      if (!currentNode.nextNode) return "empty list, nothing to find";
+      let index = 0;
+
+      while (currentNode.nextNode) {
+        currentNode = currentNode.nextNode;
+        index++;
+        if (currentNode.value == value) break;
+        if (!currentNode.nextNode) return "item does not exist in the list";
+      };
+
+      return index;
+    },
+
+    toString () {
+      let string = "null";
+      let currentNode = this.head();
+
+      while (currentNode.nextNode) {
+        currentNode = currentNode.nextNode;
+        string += ` -> (${currentNode.value})`;
+
+        if (!currentNode.nextNode) {
+          string += " -> null";
+          break;
+        };
+      };
+
+      return string;
+    },
   };
 };
 
