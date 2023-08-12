@@ -38,7 +38,27 @@ function linkedList () {
     },
 
     insertAt (value, index) {
+      if (!value || !index || typeof index !== 'number' || index <= 0) return "two parameters required [value, index] and index must be a positive integer > 0";
 
+      let node = this.node(value);
+      let currentNode = node.head;
+      // let count = 0;
+      let prevNode;
+
+      for (let count = 0; count <= index; count++) {
+        if (!currentNode.nextNode && count < index) console.log(count);
+
+        prevNode = currentNode;
+        currentNode.nextNode = currentNode;
+        
+        if (count == index) {
+          prevNode.nextNode = node.new;
+          node.new.nextNode = currentNode;
+          break;
+        };
+      };
+
+      return node.head;
     },
 
     prepend (value) {
@@ -178,3 +198,46 @@ list.append(7);
 list.prepend(4);
 list.prepend(3);
 list.prepend(2);
+
+
+     // for (let count = 0; count++; count <= index) {
+     //    console.log(count)
+     //    if (!currentNode.nextNode) currentNode.nextNode = this.node();
+     //
+     //    prevNode = currentNode;
+     //    currentNode = currentNode.nextNode;
+     //
+     //    if (count == index) {
+     //      prevNode.nextNode = node.new;
+     //      node.new.nextNode = currentNode;
+     //      break;
+     //    };
+     //  };
+     //
+     //  while (currentNode.nextNode) {
+     //    prevNode = currentNode;
+     //    currentNode = currentNode.nextNode;
+     //    count++;
+     //
+     //    if (count == index) {
+     //      prevNode.nextNode = node.new;
+     //      node.new.nextNode = currentNode;
+     //      break;
+     //    };
+     //
+     //    while (!currentNode.nextNode) {
+     //      console.log(this.node())
+     //      currentNode.nextNode = this.node();
+     //      prevNode = currentNode;
+     //      currentNode = currentNode.nextNode;
+     //      count++;
+     //
+     //      if (count == index) {
+     //        prevNode.nextNode = node.new;
+     //        node.new.nextNode = currentNode;
+     //        break;
+     //      };
+     //    };
+     //  };
+     //
+
