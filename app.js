@@ -161,19 +161,13 @@ function linkedList () {
       if (value == undefined) return "parameter cannot be undefined";
 
       let wanted = this.head();
-      let has = false;
 
-      while (wanted.nextNode) {
-        if (wanted.value === value) {
-          has = true;
-          break;
-        };
-
-        if (!wanted.nextNode) break;
+      while (wanted) {
+        if (wanted.value === value) return true;
         wanted = wanted.nextNode;
       };
 
-      return has;
+      return false;
     },
 
     find (value) {
