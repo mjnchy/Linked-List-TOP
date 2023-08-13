@@ -42,19 +42,20 @@ function linkedList () {
 
       let node = this.node(value);
       let currentNode = node.head;
-      // let count = 0;
-      let prevNode;
+      let count = 0;
+      let prevNode;      
 
-      for (let count = 0; count <= index; count++) {
-        if (!currentNode.nextNode && count < index) console.log(count);
+
+      while (count <= index) {
+        count++;
+        if (!currentNode.nextNode) currentNode.nextNode = this.node().new;
 
         prevNode = currentNode;
-        currentNode.nextNode = currentNode;
-        
+        currentNode = currentNode.nextNode;
+
         if (count == index) {
           prevNode.nextNode = node.new;
           node.new.nextNode = currentNode;
-          break;
         };
       };
 
