@@ -135,7 +135,27 @@ function linkedList () {
       return wanted;
     },
 
-    removeAt (index) {},
+    removeAt (index) {
+      if (!index || typeof index !== 'number' || index <= 0) return "parameter required, must be a positive integer > 0";
+      let wanted = this.head();
+      let count = 0;
+      let prevNode;
+  
+      while (count <= index) {
+        if (!wanted.nextNode) return "provided index does not exist";
+
+        prevNode = wanted;
+        wanted = wanted.nextNode;
+        count++;
+
+        if (count == index) {
+          prevNode.nextNode = wanted.nextNode;
+          delete(wanted);
+        };
+      };
+
+      return this.head();
+    },
 
     contains (value) {
       if (value == undefined) return "parameter cannot be undefined";
